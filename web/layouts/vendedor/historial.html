@@ -1,0 +1,24 @@
+<div class="row placeholders">
+    <h1 class="text-center page-header">Art&iacute;culos Vendidos</h1>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Cantidad</th><th>Precio</th><th>Nombre</th><th>Fecha de venta</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(int i = 1; i < 8; i++){ %>
+            <% 
+            Timestamp time = new Timestamp(new Date().getTime()); 
+            String fecha = String.valueOf(time).substring(0, 10);
+            %>
+            <tr>
+                <td><%= Math.round(Math.random() * 50) %></td>
+                <td><%= Math.random() * 50 %></td>
+                <td>Producto <%= Math.round(Math.random() * i) %></td>
+                <td><%= fecha %></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
