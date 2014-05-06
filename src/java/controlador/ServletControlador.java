@@ -96,14 +96,14 @@ public class ServletControlador extends HttpServlet {
                 //System.err.println(subirImagen(filecontent,nombreArchivo));
                 //producto.update(id, descripcion, fabricante, precio, unidad, existencia, nombreArchivo, pass);
             } else if (accion.equals("Alta")) {
-                System.err.println(subirImagen(filecontent,nombreArchivo));
+                System.out.println(subirImagen(filecontent,nombreArchivo));
                 producto.add(nombreP, descriP, fabriP, precioP, existP, unitP, codigoP, descuentoP,descriDP,nombreArchivo);
             } else if (accion.equals("Baja")) {
                 //producto.delete(id, pass);
             }
 
             response.sendRedirect("principal.jsp");
-        }catch(FileUploadException fue){System.out.println(fue);}
+        }catch(FileUploadException fue){System.out.println(fue);System.out.println("sdfsdfsdf");}
         
     }
 
@@ -152,15 +152,15 @@ public class ServletControlador extends HttpServlet {
         String path = context.getContextPath();
         System.out.println(path);
         System.out.println(context.getRealPath("/"));
-        System.out.println(context.getRealPath("/") + "Imagenes\\"+ filename);
-        /*try {
-            File f = new File(context.getRealPath("/") + "Imagenes\\"+ filename);
+        System.out.println(context.getRealPath("/") + "Images\\"+ filename);
+        try {
+            File f = new File(context.getRealPath("/") + "Images\\"+ filename);
             FileUtils.copyInputStreamToFile(archi, f);
         }
         catch(IOException e)
         {
             return false;
-        }*/
+        }
         return true;
     }
 
