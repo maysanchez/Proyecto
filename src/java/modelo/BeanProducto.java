@@ -100,6 +100,65 @@ public class BeanProducto {
             mensaje = "Acción no realizada";
         }
     }
+    
+    public void update(String nombreP, String descriP, String fabriP, double precioP, int existP, String unitP, String codigoP, String descuentoP, String descriDP, String nombreArchivo){
+		try{
+			 Connection con = new AccesBD().conexion();
+            
+			if (con != null) {
+                PreparedStatement ps = null;
+				    ps = con.prepareStatement("SELECT * FROM producto WHERE codigoP = ?", Statement.RETURN_GENERATED_KEYS);
+                    ps.setString(1, codigoP);
+                    ps.execute();
+                
+					//ResultSet rs = ps.getResultSet();
+					ResultSet rs = ps.getGeneratedKeys();
+					
+					if(rs.next()){ 
+						//EL PRODUCTO EXISTE
+						PreparedStatement ps1 = con.prepareStatement("update producto set nombreP = ?,descriP = ?,fabriP = ?,precioP = ?,existP = ?,unitP = ?, descuentoP = ?, descriDP = ?, nombreArchivo = ? where codigoP = ?");
+						ps1.setString(10, codigoP);
+						ps1.setString(1, nombreP);
+						ps1.setString(2, descriP);
+						ps1.setString(3, fabriP);
+						ps1.setString(4, precioP);
+						ps1.setString(5, existP);
+						ps1.setString(6, unitP);
+						ps1.setString(7, descuentoP);
+						ps1.setString(8, descriDP);
+						ps1.setString(9, nombreArchivo);
+						ps1.execute();
+
+						this.reset();
+						this.codigoP = codigoP;
+						this.nombreP = nombreP;
+						this.descriP = descriP;
+						this.fabriP = fabriP;
+						this.precioP = precioP;
+						this.existP = existP;
+						this.unitP = unitP;
+						this.descuentoP = descuentoP;
+						this.descriDP = descriDP;
+						this.nombreArchivo = nombreArchivo;
+						this.mensaje = "Elproducto " + nombreP + "ha sido modificado exitosamente";
+					}
+					
+					else
+						mensaje = "No se ha encontrado el producto"; 
+					
+					con.close();
+		
+		}
+		
+		catch (Exception ex){
+				ex.printStackTrace();
+				mensaje = "Acción no realizada";
+		}
+	
+	
+	}
+    
+    
 
     public String read() {
         String respuesta = "";
