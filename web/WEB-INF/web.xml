@@ -4,8 +4,24 @@
         <servlet-name>ServletControlador</servlet-name>
         <servlet-class>controlador.ServletControlador</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletRegistro</servlet-name>
+        <servlet-class>controlador.ServletRegistroProd</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletUsers</servlet-name>
+        <servlet-class>controlador.ServletUsers</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletControlador</servlet-name>
         <url-pattern>/productos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletRegistro</servlet-name>
+        <url-pattern>/alta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletUsers</servlet-name>
+        <url-pattern>/usuarios</url-pattern>
     </servlet-mapping>
 </web-app>

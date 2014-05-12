@@ -3,27 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package controlador;
 
-import java.io.*;
-import java.util.Date;
-import java.util.List;
-
-import javax.servlet.*;
-import javax.servlet.http.*;
-import modelo.BeanProducto;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
+import java.beans.Beans;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import modelo.BeanUsuario;
 
 /**
  *
  * @author JL
  */
-public class ServletControlador extends HttpServlet {
+public class ServletUsers extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,18 +35,15 @@ public class ServletControlador extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        HttpSession ses = request.getSession(true);
-        BeanProducto producto = (BeanProducto) ses.getAttribute("producto");
-        String accion = "";
-        if (producto == null) {
-            producto = new BeanProducto();
-            ses.setAttribute("producto", producto);
+        HttpSession session = request.getSession();
+        BeanUsuario user = (BeanUsuario) session.getAttribute("BeanUser");
+        if(user == null){
+            user = new BeanUsuario();
+            session.setAttribute("BeanUser", user);
         }
-        accion = request.getParameter("submit");
-        if (accion.equals("Consulta")) {
-            out.println(producto.read());
+        if("Consulta".equals(request.getParameter("submit"))){
+            out.println(user.consultaVendedor("jolmesV"));
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

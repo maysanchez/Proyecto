@@ -2,6 +2,6 @@
 <Context antiJARLocking="true" path="/Proyecto">
 <Resource name="jdbc/store" auth="Container" type="javax.sql.DataSource"
               maxActive="100" maxIdle="30" maxWait="10000"
-              username="root" password="n0m3l0s3" driverClassName="com.mysql.jdbc.Driver"
+              username="root" password="root" driverClassName="com.mysql.jdbc.Driver"
               url="jdbc:mysql://localhost:3306/store"/>
 </Context>
